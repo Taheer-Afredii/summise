@@ -30,10 +30,10 @@ class AppRoutes {
       signIn: (context) => SignInScreen(),
       signUp: (context) => SignUpScreen(),
       menu: (context) => const MenuScreen(),
-      recording: (context) => const RecordingScreen(),
+      recording: (context) => RecordingScreen(),
       calender: (context) => const CalenderScreen(),
       prevSummeriseScreen: (context) => const PrevsummeriseScreen(),
-      summariseType: (context) => const SummarisetypeScreen(),
+      summariseType: (context) => SummarisetypeScreen(),
       setting: (context) => const SettingScreen(),
       subscription: (context) => const SubscriptionScreen(),
     };

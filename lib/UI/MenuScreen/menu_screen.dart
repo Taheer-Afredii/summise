@@ -36,7 +36,7 @@ class MenuScreen extends StatelessWidget {
                       Navigator.pushNamed(context, AppRoutes.setting);
                       break;
                     case 2:
-                      // Navigator.pushNamed(context, AppRoutes.setting);
+                      Navigator.pushNamed(context, AppRoutes.calender);
                       break;
                     case 3:
                       Navigator.pushNamed(context, AppRoutes.subscription);

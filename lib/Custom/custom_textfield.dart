@@ -145,58 +145,85 @@ class PasswordField extends StatelessWidget {
   }
 }
 
+class RecordingTextField extends StatelessWidget {
+  const RecordingTextField(
+      {super.key,
+      required this.hintText,
+      required this.controller,
+      this.height,
+      this.width,
+      this.horizontalPadding,
+      this.verticalPadding,
+      this.hintColor,
+      this.hintWeight,
+      this.radius,
+      this.textAlign,
+      this.isShowmenuButton = false,
+      this.onMenuIconTap});
 
-// class CustomTextField2 extends StatelessWidget {
-//   const CustomTextField2({
-//     super.key,
-//     required this.hintText,
-//     required this.controller,
-//     this.height,
-//     this.width,
-//     this.padding,
-//     this.hintColor,
-//     this.hintWeight,
-//     this.radius,
-//   });
-
-//   final String hintText;
-//   final TextEditingController controller;
-//   final double? height;
-//   final double? width;
-//   final double? padding;
-//   final Color? hintColor;
-//   final FontWeight? hintWeight;
-//   final double? radius;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: height ?? 48.h,
-//       width: width ?? 1.sw,
-//       margin: EdgeInsets.symmetric(horizontal: padding ?? 32.w),
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(radius ?? 12.r),
-//         border: Border.all(
-//           color: textFieldBoderColor,
-//         ),
-//         color: textFieldColor,
-//       ),
-//       child: TextFormField(
-//         controller: controller,
-//         // textAlign: TextAlign.center,s
-//         decoration: InputDecoration(
-//           contentPadding: EdgeInsets.only(left: 16.w, top: 10.h),
-//           hintText: hintText,
-//           // suffixIcon: const SizedBox(),
-//           hintStyle: TextStyle(
-//             color: hintColor ?? textFieldHintColor,
-//             fontSize: 15.sp,
-//             fontFamily: "Mulish",
-//             fontWeight: hintWeight ?? FontWeight.w400,
-//           ),
-//           enabledBorder: InputBorder.none,
-//           focusedBorder: InputBorder.none,
-//         ),
-//       ),
-//     );
-//   }
-// }
+  final String hintText;
+  final TextEditingController controller;
+  final double? height;
+  final double? width;
+  final double? horizontalPadding;
+  final double? verticalPadding;
+  final Color? hintColor;
+  final FontWeight? hintWeight;
+  final double? radius;
+  final bool? isShowmenuButton;
+  final VoidCallback? onMenuIconTap;
+  final TextAlign? textAlign;
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthProvider>(builder: (context, model, child) {
+      return SizedBox(
+        height: height ?? 520.h,
+        child: TextFormField(
+          controller: controller,
+          textAlign: textAlign ?? TextAlign.start,
+          maxLines: 20,
+          style: TextStyle(
+            color: blackColor,
+            fontSize: 15.sp,
+            fontFamily: "Mulish",
+            fontWeight: FontWeight.w400,
+          ),
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding ?? 20.w,
+                vertical: verticalPadding ?? 100.h),
+            fillColor: const Color(0xFFD9D9D9),
+            filled: true,
+            hintText: hintText,
+            // suffixIcon: isShowmenuButton == true
+            //     ? GestureDetector(
+            //         onTap: onMenuIconTap ?? () {},
+            //         child: Padding(
+            //           padding: EdgeInsets.only(right: 10.h),
+            //           child: const Icon(
+            //             Icons.menu_rounded,
+            //             color: buttonColor,
+            //           ),
+            //         ),
+            //       )
+            //     : const SizedBox.shrink(),
+            hintStyle: TextStyle(
+              color: hintColor ?? blackColor,
+              fontSize: 24.sp,
+              fontFamily: "Mulish",
+              fontWeight: hintWeight ?? FontWeight.w500,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+}

@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:summise/Core/Constant/colorss.dart';
 import 'package:summise/Core/Constant/text_style.dart';
 import 'package:summise/Core/Routes/app_routes.dart';
@@ -85,6 +86,10 @@ class _TableEventsWidgetState extends State<TableEventsWidget> {
     } else if (end != null) {
       _selectedEvents.value = _getEventsForDay(end);
     }
+  }
+
+  String formatSelectedDay(DateTime selectedDay) {
+    return DateFormat('d MMM h:mm a').format(selectedDay);
   }
 
   @override
@@ -198,15 +203,16 @@ class _TableEventsWidgetState extends State<TableEventsWidget> {
                       fontWeight: FontWeight.w400,
                       color: blackColor),
                   Container(
-                    width: 86.w,
-                    height: 34.h,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 11.w, vertical: 6.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6.r),
                       color: const Color(0xFF787880).withOpacity(0.12),
                     ),
                     child: Center(
                       child: mulishText(
-                          text: "8:00 AM",
+                          text:
+                              formatSelectedDay(_selectedDay ?? DateTime.now()),
                           fontSize: 17.sp,
                           fontWeight: FontWeight.w600,
                           color: blackColor),

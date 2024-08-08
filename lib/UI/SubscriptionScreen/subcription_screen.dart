@@ -18,6 +18,7 @@ class SubscriptionScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: 168.h),
               mulishText(
@@ -27,79 +28,65 @@ class SubscriptionScreen extends StatelessWidget {
                 color: textColor,
               ),
               SizedBox(height: 50.h),
-              Container(
-                height: 180.h,
-                width: 1.sw,
-                margin: EdgeInsets.symmetric(horizontal: 24.w),
-                decoration: BoxDecoration(
-                    color: const Color(0XFF868EB0),
-                    borderRadius: BorderRadius.all(Radius.circular(12.r))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SubcriptionMenuContainer(
-                      text: "Setting",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      text: "Minutes",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      text: "Cost",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      isShowBottomBorder: false,
-                      text: "Support",
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+              Flexible(
+                fit: FlexFit.loose,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(bottom: 60.h),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 26.h),
+                        child: Container(
+                          height: 180.h,
+                          margin: EdgeInsets.symmetric(horizontal: 24.w),
+                          decoration: BoxDecoration(
+                              color: const Color(0XFF868EB0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12.r))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SubcriptionMenuContainer(
+                                text: "Setting",
+                                onTap: () {},
+                              ),
+                              SubcriptionMenuContainer(
+                                text: "Minutes",
+                                onTap: () {},
+                              ),
+                              SubcriptionMenuContainer(
+                                text: "Cost",
+                                onTap: () {},
+                              ),
+                              SubcriptionMenuContainer(
+                                isShowBottomBorder: false,
+                                text: "Support",
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
               ),
-              SizedBox(height: 26.h),
-              Container(
-                height: 180.h,
-                width: 1.sw,
-                margin: EdgeInsets.symmetric(horizontal: 24.w),
-                decoration: BoxDecoration(
-                    color: const Color(0XFF868EB0),
-                    borderRadius: BorderRadius.all(Radius.circular(12.r))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SubcriptionMenuContainer(
-                      text: "Setting",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      text: "Minutes",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      text: "Cost",
-                      onTap: () {},
-                    ),
-                    SubcriptionMenuContainer(
-                      isShowBottomBorder: false,
-                      text: "Support",
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 48.h),
-              AppButton(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  text: "Back",
-                  textColor: whiteColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600),
+              SizedBox(height: 40.h),
             ],
           ),
         ),
+      ),
+      bottomSheet: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 17.w) +
+            EdgeInsets.only(bottom: 67.h),
+        child: AppButton(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            text: "Back",
+            textColor: whiteColor,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600),
       ),
     );
   }
